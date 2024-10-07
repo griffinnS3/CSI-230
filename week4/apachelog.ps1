@@ -13,9 +13,10 @@ $tableRecords += [pscustomobject]@{ "IP" = $words[0]; `
 "Client" = $words[11..($words.Length)]; }
 }
 return $tableRecords | Where-Object { $_.IP -ilike "10.*"}
-}
+
 $tableRecords = ApacheLogs1
 $tableRecords | Format-Table -AutoSize -Wrap
+}
 
-ApacheLogs1
+
 

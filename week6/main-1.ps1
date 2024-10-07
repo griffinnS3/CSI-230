@@ -168,13 +168,19 @@ while($operation){
         $name = Read-Host -Prompt "Please enter the username for the user's failed login logs"
         
         # TODO: Check the given username with the checkUser function.
-         $exists = check-User -Name $name
-       if ($exists){
+        function getFailedLogs{
        $days = Read-Host -Prompt "Please enter the number of days to look back" 
         $userLogins = getFailedLogins $days
-        # TODO: Change the above line in a way that, the days 90 should be taken from the user
-
+        # TODO: Change the above line in a way t
         Write-Host ($userLogins | Where-Object { $_.User -ilike "*$name"} | Format-Table | Out-String)
+        }
+         $exists = check-User -Name $name
+       if ($exists){
+     
+       
+     getFailedLogs
+
+        
     }
 
 
@@ -184,11 +190,13 @@ while($operation){
     
 
     elseif($choice -eq 0){
+    function getRiskUsers{
     $days = Read-Host -Prompt "Please enter the number of days to look back"
     $userFailures = getFailedLogins $days 
     $grouped = $userFailures | Group-Object User, Count  
     Write-Host ($grouped | Where-Object {$_.Count -ge 10} | Select-Object Name | Format-Table | Out-String)
-    
+    }
+    getRiskUsers
 
 }
     # TODO: Create another choice "List at Risk Users" that

@@ -23,3 +23,4 @@ $FilteredIPS = $tableRecords | Where-Object {
 }
 $counts = $FilteredIPS | Group-Object -Property IP | Select-Object Name, Count
 return $counts
+}

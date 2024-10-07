@@ -1,5 +1,5 @@
-﻿. (Join-Path "C:\Users\champuser\CSI-230\week4" apachelog.ps1)
-. (Join-Path $PSScriptRoot main-1.ps1 9)
+﻿. (Join-Path $PSScriptRoot apachelog.ps1)
+. (Join-Path "C:\Users\champuser\CSI-230\week6" main-1.ps1 9)
 . (Join-Path "C:\Users\champuser\CSI-230" ProcessManagement#4.ps1)
 . (Join-Path "C:\Users\champuser\CSI-230\week3" Assignment3.ps1)
 
