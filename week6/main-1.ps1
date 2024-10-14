@@ -2,6 +2,11 @@
 . (Join-Path $PSScriptRoot Event-Logs.ps1)
 
 clear
+function getRiskUsers($days){
+    $userFailures = getFailedLogins $days 
+    $grouped = $userFailures | Group-Object User, Count  
+    return ($grouped | Where-Object {$_.Count -ge 10} | Select-Object Name | Format-Table | Out-String)
+    }
 
 $Prompt = "`n"
 $Prompt += "Please choose your operation:`n"
@@ -15,7 +20,7 @@ $Prompt += "7 - Get Log-In Logs`n"
 $Prompt += "8 - Get Failed Log-In Logs`n"
 $Prompt += "9 - Exit`n"
 $Prompt += "0 - List Risk Users`n"
-
+ 
 
 
 $operation = $true
@@ -190,12 +195,7 @@ while($operation){
     
 
     elseif($choice -eq 0){
-    function getRiskUsers{
-    $days = Read-Host -Prompt "Please enter the number of days to look back"
-    $userFailures = getFailedLogins $days 
-    $grouped = $userFailures | Group-Object User, Count  
-    Write-Host ($grouped | Where-Object {$_.Count -ge 10} | Select-Object Name | Format-Table | Out-String)
-    }
+   
     getRiskUsers
 
 }
